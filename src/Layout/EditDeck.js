@@ -21,7 +21,6 @@ function EditDeck({ deck, setDeck }) {
         }
         getDeck()
         
-        console.log(deck)
     }, [deckId, setDeck])
 
     const handleChange = ({target}) => {
@@ -57,6 +56,7 @@ function EditDeck({ deck, setDeck }) {
                 id="name"
                 placeholder={deck.name}
                 name="name"
+                required
                 onChange={handleChange}
                 value={deck.name}/>
             </div>
@@ -68,6 +68,7 @@ function EditDeck({ deck, setDeck }) {
                 id="description"
                 placeholder={deck.decription}
                 name="description"
+                required
                 onChange={handleChange}
                 value={deck.description}/>
         </div>

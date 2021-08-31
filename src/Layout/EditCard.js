@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useParams, useHistory, Link } from "react-router-dom"
 import { readDeck, updateCard, readCard } from "../utils/api/index"
+import FormComponent from "./FormComponent"
 
 function EditCard ({ deck, setDeck, cards, setCards}) {
     const { deckId, cardsId } = useParams();
@@ -21,7 +22,6 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
         }
         getDeck()
         
-        console.log(deck)
     }, [deckId, setDeck])
 
     useEffect(() => {
@@ -39,7 +39,6 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
         }
         getDeck()
         
-        console.log(deck)
     }, [deckId])
 
     const handleChange = ({target}) => {
@@ -48,13 +47,13 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
         })
     }
 
-    async function handleSubmit(event) {
+    async function handleSave(event) {
         event.preventDefault();
         const response = await updateCard(cards)
         history.push(`/decks/${deck.id}`)
     }
 
-    function handleCancel(event) {
+    function handleDone(event) {
         event.preventDefault();
         history.push(`/decks/${deck.id}`)
     }
@@ -65,9 +64,10 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
             <span>{" "}/{" "}</span>
             <Link to={`/decks/${deckId}`}>{deck.name}</Link>
             <span>{" "}/{" "}Edit Card {cardsId}</span>
-            <h1>{deck.name}: Add Card</h1>
+            <h1>Edit Card</h1>
             <div>
-                <form>
+                <FormComponent handleChange={handleChange} handleSave={handleSave} handleDone={handleDone} cards={cards} />
+                {/* <form>
                     <div className= "form-group">
                     <label className="form-label" htmlFor="name">Name</label>
                         <textarea
@@ -76,6 +76,7 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
                         id="front"
                         placeholder={cards.front}
                         name="front"
+                        required
                         onChange={handleChange}
                         value={cards.front}/>
                     </div>
@@ -87,12 +88,13 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
                         id="back"
                         placeholder={cards.back}
                         name="back"
+                        required
                         onChange={handleChange}
                         value={cards.back}/>
             </div>
                 <button type="submit" className="btn btn-secondary" onClick={handleCancel}>Cancel</button>
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-                </form>
+                </form> */}
             </div>
         </div>
     )

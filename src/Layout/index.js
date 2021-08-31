@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import Home from "./Home"
@@ -8,7 +8,7 @@ import DeckView from "./DeckView"
 import AddCard from "./AddCard"
 import EditDeck from "./EditDeck"
 import EditCard from "./EditCard"
-import { BrowserRouter as Router, Route, Switch, useParams, useHistory } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 function Layout() {
   const [decks, setDecks] = useState([])

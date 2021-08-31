@@ -5,8 +5,6 @@ function Study({cards, deck}) {
     const history = useHistory();
     const [front, setFront] = useState(true)
     const [cardIndex, setCardIndex] = useState(0)
-    console.log(cards)
-    console.log(deck)
 
     function flip() {
         setFront(!front)

@@ -23,7 +23,6 @@ function DeckView({deck, setDeck, cards, setCards}) {
         }
         getDeck()
         
-        console.log(deck)
     }, [deckId])
 
     async function deleteCardHandler(cardId) {
@@ -43,9 +42,9 @@ function DeckView({deck, setDeck, cards, setCards}) {
         }
       }
 
-    const listOfCards = deck.cards && deck.cards.map((card) => {
+    const listOfCards = deck.cards && deck.cards.map((card, index) => {
         return (
-            <div className="card bg-light">
+            <div className="card bg-light" key={index}>
                 <div className="card-body">
                     <h6 className="card-subtitle">Front</h6>
                     <p className="card-text text-muted">{card.front}</p>

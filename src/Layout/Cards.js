@@ -10,24 +10,39 @@ function Cards({decks, setDecks}) {
     const history = useHistory();
 
 
-    useEffect(() => {
-        loadDecks();
+    // useEffect(() => {
+    //     loadDecks();
     
-        return() => {
-          abortController.abort();
-        };
-      }, [setDecks]);
+    //     return() => {
+    //       abortController.abort();
+    //     };
+    //   }, [setDecks]);
 
-    async function loadDecks() {
-        try {
-          const response = await listDecks(signal);
-          setDecks(response);
-        } catch (error) {
-          if (error.name !== "AbortError") {
-            throw error;
-          }
+    // async function loadDecks() {
+    //     try {
+    //       const response = await listDecks(signal);
+    //       setDecks(response);
+    //     } catch (error) {
+    //       if (error.name !== "AbortError") {
+    //         throw error;
+    //       }
+    //     }
+    //   }
+
+      useEffect(() => {
+        async function loadDecks() {
+            try {
+                const response = await listDecks(signal)
+                setDecks(response)
+            } catch (error) {
+                if(error.name !== "AbortError") {
+                    throw error;
+                }
+            }
         }
-      }
+        loadDecks()
+        
+    }, [setDecks])
 
     async function deleteThisDeck(id) {
         try {
@@ -37,7 +52,7 @@ function Cards({decks, setDecks}) {
             )
           ) {
             await deleteDeck(id, signal);
-            history.push("/")
+            history.go(0)
           }
         } catch (error) {
           if (error.name !== "AbortError") {

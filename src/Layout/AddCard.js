@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { useHistory, useParams, Link } from "react-router-dom"
 import { readDeck, createCard} from "../utils/api/index"
+import FormComponent from "./FormComponent"
 
 function AddCard({deck, setDeck, cards, setCards}) {
     const history = useHistory();
@@ -21,7 +22,6 @@ function AddCard({deck, setDeck, cards, setCards}) {
         }
         getDeck()
         
-        console.log(deck)
     }, [deckId, setDeck])
 
     const handleChange = ({target}) => {
@@ -54,9 +54,11 @@ function AddCard({deck, setDeck, cards, setCards}) {
           <li className="breadcrumb-item"><a href={`/decks/${deck.id}`}>{deck.name}</a></li>
           <li className="breadcrumb-item active" aria-current="page">Add Card</li>
         </ol>
+        <h1>{deck.name}: Add Card</h1>
       </nav>
             <div>
-            <form>
+            <FormComponent handleChange={handleChange} handleSave={handleSave} handleDone={handleDone} cards={cards} />
+            {/* <form>
                 <div className= "form-group">
                     <label className="form-label" htmlFor="name">Front</label>
                         <textarea
@@ -83,7 +85,7 @@ function AddCard({deck, setDeck, cards, setCards}) {
                 </div>
                 <button type="submit" className="btn btn-secondary" onClick={handleDone}>Done</button>
                 <button type="submit" className="btn btn-primary" onClick={handleSave}>Save</button>
-            </form>
+            </form> */}
             </div>
         </div>
     )

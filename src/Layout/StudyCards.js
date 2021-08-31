@@ -22,7 +22,6 @@ function StudyCards({ deck, setDeck, cards, setCards}) {
         }
         getDeck()
         
-        console.log(deck)
     }, [deckId, setCards])
 
     return (
